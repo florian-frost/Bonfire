@@ -17,6 +17,11 @@ nbactions.xml
 .metadata
 .properties
 
+# Ignore Text editor Related/Generic
+*.sublime-workspace
+*.sublime-project
+*sftp-config.json
+
 # Ignore Bonfire Application Specifics
 application/logs/*
 !application/logs/index.html
@@ -61,3 +66,13 @@ vendor/*
 
 # Ignore any sparks that have been loaded
 sparks/*
+
+# Ignore node downloaded packages & logs
+.forever/*
+node/*
+node/logs/*
+#but keep the folder
+!node/logs/index.html
+
+#ignore tasks
+todo/*
