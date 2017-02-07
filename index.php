@@ -8,7 +8,6 @@ $composer_json = json_decode(file_get_contents("composer.json"), true);
         <title>Welcome to CI-Bonfire</title>
         <base target="_blank">
         <link rel="stylesheet" type="text/css" href="public/assets/css/bootstrap.min.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="public/assets/css/bootstrap-responsive.min.css" media="screen" />
         <style>
             body {
                 font-family:sans-serif;
