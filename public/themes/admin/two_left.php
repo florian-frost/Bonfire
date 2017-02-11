@@ -14,10 +14,10 @@ echo theme_view('header');
 <div class="body">
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span2">
+            <div class="col-lg-2">
                 <?php Template::block('sidebar'); ?>
             </div>
-            <div class="span10">
+            <div class="col-lg-10">
                 <?php
                 echo Template::message();
                 echo isset($content) ? $content : Template::content();

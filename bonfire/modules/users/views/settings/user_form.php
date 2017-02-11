@@ -1,7 +1,7 @@
 <?php
 
 $errorClass = ' error';
-$controlClass = 'span6';
+$controlClass = 'col-lg-6';
 $fieldData = array(
     'errorClass'    => $errorClass,
     'controlClass'  => $controlClass,
