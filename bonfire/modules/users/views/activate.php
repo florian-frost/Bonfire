@@ -5,7 +5,7 @@
 <?php if (validation_errors()) { ?>
 <div class="row-fluid">
 	<div class="col-lg-8 offset2">
-		<div class="alert alert-error fade in">
+		<div class="alert alert-danger fade in">
 		  <a data-dismiss="alert" class="close">&times;</a>
 			<?php echo validation_errors(); ?>
 		</div>

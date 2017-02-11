@@ -38,7 +38,7 @@ $composer_json = json_decode(file_get_contents("composer.json"), true);
                 <li>Create your database manually</li>
                 <li>Edit your <strong>application/config/database.php</strong> file accordingly</li>
             </ol>
-            <div class="alert alert-error">
+            <div class="alert alert-danger">
                 <h3>Oops!</h3>
                 <p>Your Web Root should be set to the <strong>public</strong> folder, but it's <strong>not</strong>. It's pointing to the <strong>Bonfire Root</strong> folder.</p>
                 <p>See below for an example of how your site should be set up in Apache:</p>
