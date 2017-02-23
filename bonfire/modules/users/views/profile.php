@@ -1,7 +1,7 @@
 <?php
 
 $errorClass   = empty($errorClass) ? ' error' : $errorClass;
-$controlClass = empty($controlClass) ? 'col-lg-6' : $controlClass;
+$controlClass = empty($controlClass) ? 'form-control' : $controlClass;
 $fieldData = array(
     'errorClass'   => $errorClass,
     'controlClass' => $controlClass,
@@ -53,7 +53,7 @@ if (empty($renderPayload) && isset($this->auth)) {
     </div>
     <div class="row-fluid">
         <div class="col-lg-12">
-            <?php echo form_open($this->uri->uri_string(), array('class' => 'form-horizontal', 'autocomplete' => 'off')); ?>
+            <?php echo form_open($this->uri->uri_string(), array('class' => 'form', 'autocomplete' => 'off')); ?>
                 <fieldset>
                     <?php Template::block('user_fields', 'user_fields', $fieldData); ?>
                 </fieldset>

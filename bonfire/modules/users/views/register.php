@@ -1,7 +1,7 @@
 <?php
 
 $errorClass   = empty($errorClass) ? ' error' : $errorClass;
-$controlClass = empty($controlClass) ? 'col-lg-6' : $controlClass;
+$controlClass = empty($controlClass) ? 'form-control' : $controlClass;
 $fieldData = array(
     'errorClass'    => $errorClass,
     'controlClass'  => $controlClass,
@@ -30,7 +30,7 @@ $fieldData = array(
     </div>
     <div class="row-fluid">
         <div class="col-lg-12">
-            <?php echo form_open(site_url(REGISTER_URL), array('class' => "form-horizontal", 'autocomplete' => 'off')); ?>
+            <?php echo form_open(site_url(REGISTER_URL), array('class' => "form", 'autocomplete' => 'off')); ?>
                 <fieldset>
                     <?php Template::block('user_fields', 'user_fields', $fieldData); ?>
                 </fieldset>
@@ -45,7 +45,7 @@ $fieldData = array(
                     <!-- End of User Meta -->
                 </fieldset>
                 <fieldset>
-                    <div class="control-group">
+                    <div class="form-group">
                         <div class="controls">
                             <input class="btn btn-primary" type="submit" name="register" id="submit" value="<?php echo lang('us_register'); ?>" />
                         </div>

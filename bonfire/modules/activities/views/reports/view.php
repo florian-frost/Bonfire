@@ -6,7 +6,7 @@ $hasPermissionDeleteUser   = isset($hasPermissionDeleteUser) ? $hasPermissionDel
 
 ?>
 <div class="box select admin-box">
-    <?php echo form_open(SITE_AREA . "/reports/activities/{$vars['which']}", 'class="form-horizontal constrained"'); ?>
+    <?php echo form_open(SITE_AREA . "/reports/activities/{$vars['which']}", 'class="form constrained"'); ?>
         <fieldset>
             <legend><?php echo lang('activities_filter_head'); ?></legend>
             <?php

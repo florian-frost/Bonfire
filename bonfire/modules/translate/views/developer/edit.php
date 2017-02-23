@@ -1,7 +1,7 @@
 <div class="admin-box">
     <?php
     if (! empty($orig) && is_array($orig)) :
-        echo form_open(current_url(), 'class="form-horizontal" id="translate_form"');
+        echo form_open(current_url(), 'class="form" id="translate_form"');
     ?>
         <input type="hidden" name="trans_lang" value="<?php e($trans_lang); ?>" />
         <fieldset>

@@ -29,7 +29,7 @@ if (validation_errors()) :
 }
 </style>
 <div class="admin-box">
-    <?php echo form_open($this->uri->uri_string(), 'class="form-horizontal"'); ?>
+    <?php echo form_open($this->uri->uri_string(), 'class="form"'); ?>
         <div class="tabbable">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#main-settings" data-toggle="tab"><?php echo lang('set_tab_settings'); ?></a></li>

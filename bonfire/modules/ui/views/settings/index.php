@@ -6,7 +6,7 @@
 <?php endif; ?>
 <p class='intro'><?php echo lang('ui_keyboard_shortcuts'); ?></p>
 <div class="admin-box">
-    <?php echo form_open($this->uri->uri_string(), array('class' => "form-horizontal", 'id' => 'shortcut_form')); ?>
+    <?php echo form_open($this->uri->uri_string(), array('class' => "form", 'id' => 'shortcut_form')); ?>
         <table class="table table-striped table-condensed">
             <thead>
                 <tr>

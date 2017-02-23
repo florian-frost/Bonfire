@@ -140,7 +140,7 @@ if ($hasPermissionDeleteOwn
                     <td class='label-column'><label for="activity_own_select"><?php echo lang('activities_delete_own_note'); ?></label></td>
                     <td>
                         <input type="hidden" name="action" value="activity_own" />
-                        <select name="which" id="activity_own_select">
+                        <select name="which" class="form-control" id="activity_own_select">
                             <option value="<?php echo $current_user->id; ?>"><?php e($current_user->username); ?></option>
                         </select>
                     </td>
@@ -158,7 +158,7 @@ if ($hasPermissionDeleteOwn
                     <td class='label-column'><label for="activity_user_select"><?php echo lang('activities_delete_user_note'); ?></label></td>
                     <td>
                         <input type="hidden" name="action" value="activity_user" />
-                        <select name="which" id="activity_user_select">
+                        <select name="which" class="form-control" id="activity_user_select">
                             <option value="all"><?php echo lang('activities_all_users'); ?></option>
                             <?php foreach ($users as $au) : ?>
                             <option value="<?php echo $au->id; ?>"><?php e($au->username); ?></option>
@@ -180,7 +180,7 @@ if ($hasPermissionDeleteOwn
                     <td class='label-column'><label for="activity_module_select"><?php echo lang('activities_delete_module_note'); ?></label></td>
                     <td>
                         <input type="hidden" name="action" value="activity_module" />
-                        <select name="which" id="activity_module_select">
+                        <select name="which" class="form-control" id="activity_module_select">
                             <option value="all"><?php echo lang('activities_all_modules'); ?></option>
                             <option value="core"><?php echo lang('activities_core'); ?></option>
                             <?php foreach ($modules as $mod) : ?>
@@ -203,7 +203,7 @@ if ($hasPermissionDeleteOwn
                     <td class='label-column'><label for="activity_date_select"><?php echo lang('activities_delete_date_note'); ?></label></td>
                     <td>
                         <input type="hidden" name="action" value="activity_date" />
-                        <select name="which" id="activity_date_select">
+                        <select name="which" class="form-control" id="activity_date_select">
                             <option value="all"><?php echo lang('activities_all_dates'); ?></option>
                             <?php foreach ($activities as $activity) : ?>
                             <option value="<?php echo $activity->activity_id; ?>"><?php echo $activity->created_on; ?></option>
