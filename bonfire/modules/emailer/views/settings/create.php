@@ -5,22 +5,22 @@
 .status_column { width: 10em; }
 </style>
 <?php if (validation_errors()) : ?>
-<div class="alert alert-block alert-error fade in">
+<div class="alert alert-block alert-danger fade in">
     <a class="close" data-dismiss="alert">&times;</a>
     <h4 class="alert-heading"><?php echo lang('emailer_validation_errors_heading'); ?></h4>
     <?php echo validation_errors(); ?>
 </div>
 <?php endif; ?>
 <div class="admin-box">
-    <?php echo form_open($this->uri->uri_string(), 'class="form-horizontal"'); ?>
+    <?php echo form_open($this->uri->uri_string(), 'class="form"'); ?>
         <fieldset>
-            <div class='control-group'>
+            <div class='form-group'>
                 <label class='control-label' for='email_subject'><?php echo lang('emailer_email_subject'); ?></label>
                 <div class='controls'>
                     <input type="text" size="50" name="email_subject" id="email_subject" value="<?php if (isset($email_subject)) { e($email_subject); } ?>" />
                 </div>
             </div>
-            <div class='control-group'>
+            <div class='form-group'>
                 <label class='control-label' for='email_content'><?php echo lang('emailer_email_content'); ?></label>
                 <div class='controls'>
                     <textarea name="email_content" id="email_content" rows="15"><?php

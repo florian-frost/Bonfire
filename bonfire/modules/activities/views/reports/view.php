@@ -6,7 +6,7 @@ $hasPermissionDeleteUser   = isset($hasPermissionDeleteUser) ? $hasPermissionDel
 
 ?>
 <div class="box select admin-box">
-    <?php echo form_open(SITE_AREA . "/reports/activities/{$vars['which']}", 'class="form-horizontal constrained"'); ?>
+    <?php echo form_open(SITE_AREA . "/reports/activities/{$vars['which']}", 'class="form constrained"'); ?>
         <fieldset>
             <legend><?php echo lang('activities_filter_head'); ?></legend>
             <?php
@@ -14,7 +14,7 @@ $hasPermissionDeleteUser   = isset($hasPermissionDeleteUser) ? $hasPermissionDel
                 array(
                     'name'  => "{$vars['which']}_select",
                     'id'    => "{$vars['which']}_select",
-                    'class' => 'span3',
+                    'class' => 'col-lg-3',
                 ),
                 $select_options,
                 $filter,
@@ -52,7 +52,7 @@ $hasPermissionDeleteUser   = isset($hasPermissionDeleteUser) ? $hasPermissionDel
     );
     ?></h2>
 <?php if (empty($activity_content)) : ?>
-<div class="alert alert-error fade in">
+<div class="alert alert-danger fade in">
     <a class="close" data-dismiss="alert">&times;</a>
     <h4 class="alert-heading"><?php echo lang('activities_not_found'); ?></h4>
 </div>

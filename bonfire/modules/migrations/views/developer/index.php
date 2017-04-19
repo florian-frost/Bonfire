@@ -60,7 +60,7 @@
                             <td><?php echo $migrations['installed_version']; ?></td>
                             <td><?php echo $migrations['latest_version']; ?></td>
                             <td class='migrate'>
-                                <?php echo form_open(site_url(SITE_AREA . "/developer/migrations/migrate_module/{$module}"), 'class="form-horizontal"'); ?>
+                                <?php echo form_open(site_url(SITE_AREA . "/developer/migrations/migrate_module/{$module}"), 'class="form"'); ?>
                                     <input type="hidden" name="is_module" value="1" />
                                     <select name="version">
                                         <option value=""><?php echo lang('migrations_choose_migration'); ?></option>
@@ -94,7 +94,7 @@
 		</div>
 		<!-- Bonfire Migrations -->
 		<div id="core-tab" class="tab-pane">
-            <?php echo form_open($this->uri->uri_string(), 'class="form-horizontal"'); ?>
+            <?php echo form_open($this->uri->uri_string(), 'class="form"'); ?>
                 <fieldset>
                     <legend><?php echo lang('migrations_core_migrations'); ?></legend>
                     <div class="alert alert-info fade in">
@@ -104,7 +104,7 @@
                     </div>
 					<input type="hidden" name="core_only" value="1" />
 					<?php if (count($core_migrations)) : ?>
-					<div class="control-group">
+					<div class="form-group">
 						<label class="control-label" for="migration"><?php echo lang('migrations_choose_migration'); ?></label>
 						<div class="controls">
 							<select name="migration" id="migration">

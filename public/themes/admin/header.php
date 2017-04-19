@@ -2,7 +2,6 @@
 
 Assets::add_css(array(
     'bootstrap.css',
-    'bootstrap-responsive.css',
 ));
 
 if (isset($shortcut_data) && is_array($shortcut_data['shortcut_keys'])) {
@@ -37,19 +36,22 @@ if (isset($shortcut_data) && is_array($shortcut_data['shortcut_keys'])) {
     <div class="navbar navbar-static-top navbar-inverse" id="topbar" >
         <div class="navbar-inner">
             <div class="container-fluid">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </a>
-                <?php
-                echo anchor('/', html_escape($this->settings_lib->item('site.title')), 'class="brand"');
-                if (isset($shortcut_data) && is_array($shortcut_data['shortcuts'])
-                    && is_array($shortcut_data['shortcut_keys']) && count($shortcut_data['shortcut_keys'])
-                   ) :
-                ?>
+                  </button>
+                    <?php
+                    echo anchor('/', html_escape($this->settings_lib->item('site.title')), 'class="navbar-brand"');
+                    if (isset($shortcut_data) && is_array($shortcut_data['shortcuts'])
+                        && is_array($shortcut_data['shortcut_keys']) && count($shortcut_data['shortcut_keys'])
+                       ) :
+                    ?>
+                </div>
                 <!-- Shortcut Menu -->
-                <div class="nav pull-right" id="shortcuts">
+                <div class="navbar pull-right" id="shortcuts">
                     <div class="btn-group">
                         <a class="dropdown-toggle light btn" data-toggle="dropdown" href="#"><img src="<?php echo Template::theme_url('images/keyboard-icon.png'); ?>" id="shortkeys_show" title="Keyboard Shortcuts" alt="Keyboard Shortcuts" /></a>
                         <ul class="dropdown-menu pull-right toolbar-keys">
@@ -70,7 +72,7 @@ if (isset($shortcut_data) && is_array($shortcut_data['shortcut_keys'])) {
 					</div>
                 </div>
                 <?php endif;?>
-                <div class="nav-collapse in collapse">
+                <div class="navbar-collapse in collapse">
                     <!-- User Menu -->
                     <div class="nav pull-right" id="user-menu">
                         <div class="btn-group">
@@ -105,7 +107,7 @@ if (isset($shortcut_data) && is_array($shortcut_data['shortcut_keys'])) {
                         </div>
                     </div>
                     <?php echo Contexts::render_menu('text', 'normal'); ?>
-                </div><!-- /.nav-collapse -->
+                </div><!-- /.navbar-collapse -->
 			</div><!-- /container -->
 			<div class="clearfix"></div>
 		</div><!-- /.navbar-inner -->

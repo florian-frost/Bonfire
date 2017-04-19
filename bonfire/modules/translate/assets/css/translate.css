@@ -6,7 +6,7 @@
 	width: auto;
 	margin-right: 1em;
 }
-a.span4 {
+a.col-lg-4 {
 	line-height: 32px;
 }
 .admin-box h3 {
@@ -26,14 +26,14 @@ a.span4 {
 	text-rendering: optimizelegibility;
 }
 /* edit */
-.form-horizontal label {
+.form label {
 	width: 100% !important;
 }
-.form-horizontal .control-group {
+.form .form-group {
 	padding-bottom: 5px;
 	padding-top: 5px;
 }
-.form-horizontal legend h3 {
+.form legend h3 {
 	border-bottom: none;
 }
 .gobottom {
