@@ -59,6 +59,8 @@ class Reports extends Admin_Controller
 
         $this->load->model('activities/activity_model');
 
+        $this->load->helper('date_helper');
+
         Assets::add_js(
             array(
                 'bootstrap',
@@ -229,7 +231,7 @@ class Reports extends Admin_Controller
      */
     private function activityRestricted()
     {
-        Template::set_message(lang('activities_restricted'), 'error');
+        Template::set_message(lang('activities_restricted'), 'danger');
         redirect(SITE_AREA . '/reports/activities');
     }
 
@@ -246,19 +248,19 @@ class Reports extends Admin_Controller
         // This is before the permission check because the permission check
         // takes longer and depends on the value of $action.
         if (empty($action)) {
-            Template::set_message(lang('activities_delete_no_section'), 'error');
+            Template::set_message(lang('activities_delete_no_section'), 'danger');
             return;
         }
 
         // Check for permission to delete this
         $permission = ucfirst(str_replace('activity_', '', $action));
         if (! $this->auth->has_permission("Activities.{$permission}.Delete")) {
-            Template::set_message(lang('activities_restricted'), 'error');
+            Template::set_message(lang('activities_restricted'), 'danger');
             return;
         }
 
         if (empty($which)) {
-            Template::set_message(lang('activities_delete_no_value'), 'error');
+            Template::set_message(lang('activities_delete_no_value'), 'danger');
             return;
         }
 
@@ -298,7 +300,7 @@ class Reports extends Admin_Controller
         } elseif (isset($affected)) {
             Template::set_message(lang('activities_nothing'), 'attention');
         } else {
-            Template::set_message(sprintf(lang('activities_delete_error'), $this->activity_model->error), 'error');
+            Template::set_message(sprintf(lang('activities_delete_error'), $this->activity_model->error), 'danger');
         }
     }
 
@@ -358,11 +360,12 @@ class Reports extends Admin_Controller
                 break;
             case 'activity_date':
                 foreach ($this->activity_model->find_all_by($activityDeletedField, 0) as $e) {
-                    $options[$e->activity_id] = $e->created_on;
+                    $options[$e->activity_id] = user_time(strtotime($e->created_on), null);
                     if ($filterValue == $e->activity_id) {
                         $name = $e->created_on;
                     }
                 }
+
                 $where = 'activity_id';
                 Template::set('hasPermissionDeleteDate', $this->auth->has_permission($this->permissionDeleteDate));
                 break;

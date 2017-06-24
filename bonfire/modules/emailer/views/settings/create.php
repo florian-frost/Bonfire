@@ -5,22 +5,22 @@
 .status_column { width: 10em; }
 </style>
 <?php if (validation_errors()) : ?>
-<div class="alert alert-block alert-error fade in">
+<div class="alert alert-block alert-danger fade in">
     <a class="close" data-dismiss="alert">&times;</a>
     <h4 class="alert-heading"><?php echo lang('emailer_validation_errors_heading'); ?></h4>
     <?php echo validation_errors(); ?>
 </div>
 <?php endif; ?>
 <div class="admin-box">
-    <?php echo form_open($this->uri->uri_string(), 'class="form-horizontal"'); ?>
+    <?php echo form_open($this->uri->uri_string(), 'class="form"'); ?>
         <fieldset>
-            <div class='control-group'>
+            <div class='form-group'>
                 <label class='control-label' for='email_subject'><?php echo lang('emailer_email_subject'); ?></label>
                 <div class='controls'>
                     <input type="text" size="50" name="email_subject" id="email_subject" value="<?php if (isset($email_subject)) { e($email_subject); } ?>" />
                 </div>
             </div>
-            <div class='control-group'>
+            <div class='form-group'>
                 <label class='control-label' for='email_content'><?php echo lang('emailer_email_content'); ?></label>
                 <div class='controls'>
                     <textarea name="email_content" id="email_content" rows="15"><?php
@@ -70,7 +70,7 @@
                     </td>
                     <td><?php echo $user->display_name; ?></td>
                     <td><?php echo empty($user->email) ? '' : mailto($user->email); ?></td>
-                    <td><?php echo $user->last_login == '0000-00-00 00:00:00' ? '---' : date('M j, y g:i A', strtotime($user->last_login)); ?></td>
+                    <td><?php echo $user->last_login == '0000-00-00 00:00:00' ? '---' : user_time(strtotime($user->last_login), null, 'M j, y g:i A'); ?></td>
                     <td><?php if ($user->active) : ?>
                         <span class="label label-success"><?php echo lang('us_active'); ?></span>
                         <?php else : ?>

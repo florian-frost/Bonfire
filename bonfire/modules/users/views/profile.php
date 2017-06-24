@@ -1,7 +1,7 @@
 <?php
 
 $errorClass   = empty($errorClass) ? ' error' : $errorClass;
-$controlClass = empty($controlClass) ? 'span6' : $controlClass;
+$controlClass = empty($controlClass) ? 'form-control' : $controlClass;
 $fieldData = array(
     'errorClass'   => $errorClass,
     'controlClass' => $controlClass,
@@ -32,14 +32,14 @@ if (empty($renderPayload) && isset($this->auth)) {
 <section id="profile">
     <h1 class="page-header"><?php echo lang('us_edit_profile'); ?></h1>
     <?php if (validation_errors()) : ?>
-    <div class="alert alert-error">
+    <div class="alert alert-danger">
         <?php echo validation_errors(); ?>
     </div>
     <?php
     endif;
     if (isset($user) && $user->role_name == 'Banned') :
     ?>
-    <div data-dismiss="alert" class="alert alert-error">
+    <div data-dismiss="alert" class="alert alert-danger">
         <?php echo lang('us_banned_admin_note'); ?>
     </div>
     <?php endif; ?>
@@ -52,8 +52,8 @@ if (empty($renderPayload) && isset($this->auth)) {
         ?>
     </div>
     <div class="row-fluid">
-        <div class="span12">
-            <?php echo form_open($this->uri->uri_string(), array('class' => 'form-horizontal', 'autocomplete' => 'off')); ?>
+        <div class="col-lg-12">
+            <?php echo form_open($this->uri->uri_string(), array('class' => 'form', 'autocomplete' => 'off')); ?>
                 <fieldset>
                     <?php Template::block('user_fields', 'user_fields', $fieldData); ?>
                 </fieldset>

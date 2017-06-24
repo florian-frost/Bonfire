@@ -19,9 +19,9 @@
  *
  * Allows the management of the Bonfire roles.
  *
- * @package    Bonfire\Modules\Roles\Controllers\Settings
- * @author     Bonfire Dev Team
- * @link       http://cibonfire.com/docs/bonfire/roles_and_permissions
+ * @package Bonfire\Modules\Roles\Controllers\Settings
+ * @author  Bonfire Dev Team
+ * @link    http://cibonfire.com/docs/bonfire/roles_and_permissions
  */
 class Settings extends Admin_Controller
 {
@@ -50,9 +50,6 @@ class Settings extends Admin_Controller
         Assets::add_js('codeigniter-csrf.js');
         Assets::add_module_js('roles', 'jquery.tablehover.pack.js');
         Assets::add_module_js('roles', 'js/settings.js');
-
-        // For the render_search_box()
-        $this->load->helper('ui/ui');
 
         Template::set_block('sub_nav', 'settings/_sub_nav');
     }
@@ -88,13 +85,13 @@ class Settings extends Admin_Controller
             if ($this->saveRole()) {
                 Template::set_message(lang('role_create_success'), 'success');
                 if (! empty($this->error)) {
-                    Template::set_message(lang('role_create_error') . $this->error, 'error');
+                    Template::set_message(lang('role_create_error') . $this->error, 'danger');
                 }
                 redirect(SITE_AREA . '/settings/roles');
             }
 
             if (! empty($this->role_model->error)) {
-                Template::set_message(lang('role_create_error') . $this->role_model->error, 'error');
+                Template::set_message(lang('role_create_error') . $this->role_model->error, 'danger');
             }
         }
 
@@ -120,7 +117,7 @@ class Settings extends Admin_Controller
 
         $id = (int) $this->uri->segment(5);
         if (empty($id)) {
-            Template::set_message(lang('role_invalid_id'), 'error');
+            Template::set_message(lang('role_invalid_id'), 'danger');
             redirect(SITE_AREA . '/settings/roles');
         }
 
@@ -130,7 +127,7 @@ class Settings extends Admin_Controller
                 redirect(SITE_AREA . '/settings/roles');
             }
             if (! empty($this->role_model->error)) {
-                Template::set_message(lang('role_edit_error') . $this->role_model->error, 'error');
+                Template::set_message(lang('role_edit_error') . $this->role_model->error, 'danger');
             }
         } elseif (isset($_POST['delete'])) {
             if ($this->role_model->delete($id)) {
@@ -138,7 +135,7 @@ class Settings extends Admin_Controller
                 redirect(SITE_AREA . '/settings/roles');
             }
             if (! empty($this->role_model->error)) {
-                Template::set_message(lang('role_delete_error') . $this->role_model->error, 'error');
+                Template::set_message(lang('role_delete_error') . $this->role_model->error, 'danger');
             }
         }
 
@@ -157,9 +154,9 @@ class Settings extends Admin_Controller
         Template::render();
     }
 
-    //--------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     // !HMVC METHODS
-    //--------------------------------------------------------------------
+    //--------------------------------------------------------------------------
 
     /**
      * Build the matrix for display in the role permissions form.
@@ -241,10 +238,10 @@ class Settings extends Admin_Controller
     /**
      * Save the role record to the database.
      *
-     * @param string  $type The type of save operation (insert or edit).
-     * @param integer $id   The record ID in the case of edit (ignored on insert).
+     * @param string $type The type of save operation (insert or edit).
+     * @param int    $id   The record ID in the case of edit (ignored on insert).
      *
-     * @return boolean
+     * @return bool
      */
     private function saveRole($type = 'insert', $id = 0)
     {
@@ -342,7 +339,6 @@ class Settings extends Admin_Controller
      */
     public function permission_matrix()
     {
-        // For the permission matrix
         $this->load->helper('inflector');
 
         Template::set(
@@ -384,7 +380,6 @@ class Settings extends Admin_Controller
 
         if (! $this->auth->has_permission('Permissions.' . $this->role_model->find((int)$pieces[0])->role_name . '.Manage')) {
             $this->output->set_output(lang("matrix_auth_fail"));
-
             return;
         }
 
@@ -400,7 +395,7 @@ class Settings extends Admin_Controller
             if ($this->role_permission_model->delete_role_permissions($pieces[0], $pieces[1])) {
                 $msg = lang("matrix_delete_success");
             } else {
-                $msg = lang("matrix_delete_fail"). $this->role_permission_model->error;
+                $msg = lang("matrix_delete_fail") . $this->role_permission_model->error;
             }
         }
 

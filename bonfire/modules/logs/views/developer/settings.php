@@ -5,9 +5,9 @@
 </div>
 <?php endif; ?>
 <div class="admin-box">
-	<?php echo form_open(site_url(SITE_AREA . '/developer/logs/enable'), 'class="form-horizontal"'); ?>
+	<?php echo form_open(site_url(SITE_AREA . '/developer/logs/enable'), 'class="form"'); ?>
         <fieldset>
-            <div class="control-group">
+            <div class="form-group">
                 <label for="log_threshold" class="control-label"><?php echo lang('logs_the_following'); ?></label>
                 <div class="controls">
                     <select name="log_threshold" id="log_threshold">

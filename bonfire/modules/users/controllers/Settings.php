@@ -65,6 +65,8 @@ class Settings extends Admin_Controller
      */
     public function index($filter = 'all', $offset = 0)
     {
+        $this->load->helper('date_helper');
+
         $this->auth->restrict($this->permissionManage);
 
         // Fetch roles for the filter and the list.
@@ -91,7 +93,7 @@ class Settings extends Admin_Controller
             $checked = $this->input->post('checked');
             if (empty($checked)) {
                 // No users checked.
-                Template::set_message(lang('us_empty_id'), 'error');
+                Template::set_message(lang('us_empty_id'), 'danger');
             } else {
                 foreach ($checked as $userId) {
                     $this->$action($userId);
@@ -258,7 +260,7 @@ class Settings extends Admin_Controller
         }
 
         if (empty($userId)) {
-            Template::set_message(lang('us_empty_id'), 'error');
+            Template::set_message(lang('us_empty_id'), 'danger');
 
             redirect(SITE_AREA . '/settings/users');
         }
@@ -377,17 +379,17 @@ class Settings extends Admin_Controller
     {
         $user = $this->user_model->find($id);
         if (! isset($user)) {
-            Template::set_message(lang('us_invalid_user_id'), 'error');
+            Template::set_message(lang('us_invalid_user_id'), 'danger');
             redirect(SITE_AREA . '/settings/users');
         }
 
         if ($user->id == $this->auth->user_id()) {
-            Template::set_message(lang('us_self_delete'), 'error');
+            Template::set_message(lang('us_self_delete'), 'danger');
             redirect(SITE_AREA . '/settings/users');
         }
 
         if (! has_permission("Permissions.{$user->role_name}.Manage")) {
-            Template::set_message(sprintf(lang('us_unauthorized'), $user->role_name), 'error');
+            Template::set_message(sprintf(lang('us_unauthorized'), $user->role_name), 'danger');
             redirect(SITE_AREA . '/settings/users');
         }
 
@@ -401,7 +403,7 @@ class Settings extends Admin_Controller
             );
                 Template::set_message(lang('us_action_deleted'), 'success');
         } elseif (! empty($this->user_model->error)) {
-            Template::set_message(lang('us_action_not_deleted') . $this->user_model->error, 'error');
+            Template::set_message(lang('us_action_not_deleted') . $this->user_model->error, 'danger');
         }
     }
 
@@ -436,7 +438,7 @@ class Settings extends Admin_Controller
         if ($this->user_model->update($id, array('users.deleted' => 0))) {
             Template::set_message(lang('us_user_restored_success'), 'success');
         } elseif (! empty($this->user_model->error)) {
-            Template::set_message(lang('us_user_restored_error') . $this->user_model->error, 'error');
+            Template::set_message(lang('us_user_restored_error') . $this->user_model->error, 'danger');
         }
     }
 
@@ -538,9 +540,10 @@ class Settings extends Admin_Controller
             $this->user_model->save_meta_for($id, $metaData);
         }
 
+        // Add result to payload.
+        $payload['result'] = $result;
         // Any modules needing to save data?
-        $postData = $this->input->post();
-        Events::trigger('save_user', $postData);
+        Events::trigger('save_user', $payload);
 
         return $result;
     }
@@ -585,7 +588,7 @@ class Settings extends Admin_Controller
     private function setUserStatus($userId = false, $status = 1, $suppressEmail = 0)
     {
         if ($userId === false || $userId == -1) {
-            Template::set_message(lang('us_err_no_id'), 'error');
+            Template::set_message(lang('us_err_no_id'), 'danger');
             return;
         }
 
@@ -604,7 +607,7 @@ class Settings extends Admin_Controller
 
         if (! $result) {
             if (! empty($this->user_model->error)) {
-                Template::set_message(lang('us_err_status_error') . $this->user_model->error, 'error');
+                Template::set_message(lang('us_err_status_error') . $this->user_model->error, 'danger');
             }
             return;
         }

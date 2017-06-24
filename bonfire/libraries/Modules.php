@@ -93,6 +93,8 @@ class Modules
     /**
      * Load a module controller.
      *
+     * @uses BF_Router::load()
+     *
      * @param string $module The module/controller to load.
      *
      * @return mixed The loaded controller.
@@ -342,11 +344,11 @@ class Modules
             return false;
         }
 
+        $controller = ucfirst($controller);
+
         // Look in all module paths.
         foreach (Modules::folders() as $folder) {
             if (is_file("{$folder}{$module}/controllers/{$controller}.php")) {
-                return true;
-            } elseif (is_file("{$folder}{$module}/controllers/" . ucfirst($controller) . '.php')) {
                 return true;
             }
         }
@@ -356,6 +358,9 @@ class Modules
 
     /**
      * Find the path to a module's file.
+     *
+     * Since this is used for nearly any type of file, ucfirst() must be checked,
+     * but can't be assumed.
      *
      * @param $module string The name of the module to find.
      * @param $folder string The folder within the module to search for the file
@@ -370,11 +375,12 @@ class Modules
             return false;
         }
 
+        $ucFile = ucfirst($file);
         foreach (Modules::folders() as $module_folder) {
             if (is_file("{$module_folder}{$module}/{$folder}/{$file}")) {
                 return "{$module_folder}{$module}/{$folder}/{$file}";
-            } elseif (is_file("{$module_folder}{$module}/{$folder}/" . ucfirst($file))) {
-                return "{$module_folder}{$module}/{$folder}/" . ucfirst($file);
+            } elseif (is_file("{$module_folder}{$module}/{$folder}/{$ucFile}")) {
+                return "{$module_folder}{$module}/{$folder}/{$ucFile}";
             }
         }
     }
@@ -438,7 +444,7 @@ class Modules
                 continue;
             }
 
-            // Only map the whole modules directory if $module_name isn't passed.
+            // If $module_name isn't passed, map the whole modules directory.
             if (empty($module_name)) {
                 $modules = bcDirectoryMap($path);
             } elseif (is_dir($path . $module_name)) {
@@ -446,6 +452,7 @@ class Modules
                 $path = $path . $module_name;
                 $modules[$module_name] = bcDirectoryMap($path);
             }
+            // If $module_name is passed, but the directory doesn't exist, do nothing.
 
             // If the element is not an array, it's a file, so ignore it. Otherwise,
             // it is assumbed to be a module.

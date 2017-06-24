@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | and its corresponding controller class/method. The segments in a
 | URL normally follow this pattern:
 |
-|	example.com/class/method/id/
+|   example.com/class/method/id/
 |
 | In some instances, however, you may want to remap this relationship
 | so that a different class/function is called than the one
@@ -19,26 +19,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Please see the user guide for complete details:
 |
-|	http://codeigniter.com/user_guide/general/routing.html
+|	https://codeigniter.com/user_guide/general/routing.html
 |
 | -------------------------------------------------------------------------
 | RESERVED ROUTES
 | -------------------------------------------------------------------------
 |
-| There are two reserved routes (three in CI3):
+| There are three reserved routes:
 |
-|	$route['default_controller'] = 'welcome';
+|   $route['default_controller'] = 'welcome';
 |
 | This route indicates which controller class should be loaded if the
 | URI contains no data. In the above example, the "welcome" class
 | would be loaded.
 |
-|	$route['404_override'] = 'errors/page_missing';
+|   $route['404_override'] = 'errors/page_missing';
 |
 | This route will tell the Router which controller/method to use if those
 | provided in the URL cannot be matched to a valid route.
-|
-| CI3:
 |
 |	$route['translate_uri_dashes'] = FALSE;
 |
@@ -54,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
+$route['translate_uri_dashes'] = false;
 
 // Authentication
 Route::any(LOGIN_URL, 'users/login', array('as' => 'login'));
@@ -79,7 +78,3 @@ Route::prefix(SITE_AREA, function(){
 });
 
 $route = Route::map($route);
-
-if (defined(CI_VERSION) && substr(CI_VERSION, 0, 1) != '2') {
-    $route['translate_uri_dashes'] = false;
-}

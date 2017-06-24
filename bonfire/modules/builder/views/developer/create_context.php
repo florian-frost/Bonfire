@@ -2,18 +2,18 @@
 <p class='intro'><?php echo lang('mb_context_create_intro_note'); ?></p>
 <div class="admin-box">
     <?php if (validation_errors()) : ?>
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
         <a data-dismiss="alert" class="close">&times;</a>
         <h4 class="alert-heading"><?php echo lang('mb_form_errors'); ?></h4>
 		<?php echo validation_errors(); ?>
 	</div>
     <?php endif; ?>
-	<?php echo form_open(current_url(), 'class="form-horizontal"'); ?>
+	<?php echo form_open(current_url(), 'class="form"'); ?>
         <fieldset>
-            <div class="control-group<?php echo form_error('context_name') ? ' error' : ''; ?>">
+            <div class="form-group<?php echo form_error('context_name') ? ' error' : ''; ?>">
                 <label for="context_name" class="control-label"><?php echo lang('mb_context_name'); ?></label>
                 <div class="controls">
-                    <input type="text" name="context_name" id="context_name" class="input-large" value="<?php echo settings_item('context_name'); ?>" />
+                    <input type="text" name="context_name" class="form-control" id="context_name" class="input-large" value="<?php echo settings_item('context_name'); ?>" />
                     <span class="help-inline"><?php
                         echo form_error('context_name') ? form_error('context_name') . '<br />' : '';
                         echo lang('mb_context_name_help');
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <?php if (! empty($roles) && is_array($roles)) : ?>
-            <div class="control-group">
+            <div class="form-group">
                 <label class="control-label" id="roles_label"><?php echo lang('mb_roles_label'); ?></label>
                 <div class="controls" aria-labelledby="roles_label" role="group">
                     <?php foreach ($roles as $role) : ?>
@@ -35,7 +35,7 @@
             <?php endif; ?>
             <?php
             /* TODO: Add this in later.
-            <div class="control-group">
+            <div class="form-group">
                 <div class="controls">
                     <label class="checkbox" for="migrate">
                         <input type="checkbox" name="migrate" id="migrate" value="1" <?php echo set_checkbox('migrate', '1'); ?> /> <?php echo lang('mb_context_migrate'); ?>

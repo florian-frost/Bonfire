@@ -34,7 +34,7 @@
                         $defaultState,
                         $defaultCountry,
                         $field['name'],
-                        'span6 chzn-select'
+                        'form-control chzn-select'
                     );
                     break;
                 case 'country_select':
@@ -48,7 +48,7 @@
                         set_value($field['name'], $countryValue),
                         $defaultCountry,
                         $field['name'],
-                        'span6 chzn-select'
+                        'form-control chzn-select'
                     );
                     break;
                 default:
@@ -65,7 +65,7 @@
 
             if (! empty($field_control)) :
     ?>
-    <div class="control-group<?php echo form_error($field['name']) ? $errorClass : ''; ?>">
+    <div class="form-group<?php echo form_error($field['name']) ? $errorClass : ''; ?>">
         <label class="control-label" for="<?php echo $field['name']; ?>"><?php echo $field['label']; ?></label>
         <div class="controls">
             <?php echo $field_control; ?>

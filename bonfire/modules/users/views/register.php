@@ -1,7 +1,7 @@
 <?php
 
 $errorClass   = empty($errorClass) ? ' error' : $errorClass;
-$controlClass = empty($controlClass) ? 'span6' : $controlClass;
+$controlClass = empty($controlClass) ? 'form-control' : $controlClass;
 $fieldData = array(
     'errorClass'    => $errorClass,
     'controlClass'  => $controlClass,
@@ -16,7 +16,7 @@ $fieldData = array(
 <section id="register">
     <h1 class="page-header"><?php echo lang('us_sign_up'); ?></h1>
     <?php if (validation_errors()) : ?>
-    <div class="alert alert-error fade in">
+    <div class="alert alert-danger fade in">
         <?php echo validation_errors(); ?>
     </div>
     <?php endif; ?>
@@ -29,8 +29,8 @@ $fieldData = array(
         ?>
     </div>
     <div class="row-fluid">
-        <div class="span12">
-            <?php echo form_open(site_url(REGISTER_URL), array('class' => "form-horizontal", 'autocomplete' => 'off')); ?>
+        <div class="col-lg-12">
+            <?php echo form_open(site_url(REGISTER_URL), array('class' => "form", 'autocomplete' => 'off')); ?>
                 <fieldset>
                     <?php Template::block('user_fields', 'user_fields', $fieldData); ?>
                 </fieldset>
@@ -45,7 +45,7 @@ $fieldData = array(
                     <!-- End of User Meta -->
                 </fieldset>
                 <fieldset>
-                    <div class="control-group">
+                    <div class="form-group">
                         <div class="controls">
                             <input class="btn btn-primary" type="submit" name="register" id="submit" value="<?php echo lang('us_register'); ?>" />
                         </div>
